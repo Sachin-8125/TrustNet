@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage';
+import Dashboard from './components/Dashboard';
 import api from './api.js';
 import './App.css'
 
@@ -6,8 +9,8 @@ export default function App() {
   const [user,setUser] = useState(null);
   const [token,setToken] = useState(null);
   const [authError,setAuthError] = useState('');
-  const [isLoading,setIsLoading] = useState(true);
   const [authMode,setAuthMode] = useState('login');
+  const [isLoading,setIsLoading] = useState(true);
 
   useEffect(()=>{
     const storedToken = localStorage.getItem('authToken');
@@ -59,11 +62,11 @@ export default function App() {
   return (
     <div className="bg-gray-50 font-sans min-h-screen">
         {user ? (
-            <Dashboard user={user} token={token} onLogout={handleLogout} />
+            <Dashboard user={user} token={token} onLogout={logoutHandler} />
         ) : authMode === 'login' ? (
-            <LoginPage onLogin={handleLogin} error={authError} onSwitchMode={() => setAuthMode('signup')} />
+            <LoginPage onLogin={loginHandler} error={authError} onSwitchMode={() => setAuthMode('signup')} />
         ) : (
-            <SignupPage onRegister={handleRegister} error={authError} onSwitchMode={() => setAuthMode('login')} />
+            <SignupPage onRegister={registerHandler} error={authError} onSwitchMode={() => setAuthMode('login')} />
         )}
     </div>
   );

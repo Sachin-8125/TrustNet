@@ -1,0 +1,89 @@
+import { useState } from "react";
+import {ShieldIcon} from './icons'
+
+export default function SignupPage({onRegister, error, onSwitchMode}){
+    const [name,setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [role, setRole] = useState('ELDERLY');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onRegister({name,email,password,role});
+    };
+
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8">
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+                <div className="flex flex-col items-center mb-6">
+                    <div className="bg-blue-600 text-white p-3 rounded-full mb-4">
+                        <ShieldIcon />
+                    </div>
+                    <h1 className="text-3xl font-bold text-gray-800">Create Account</h1>
+                    <p className="text-gray-500 mt-1">Join Suraksha Kavach Today</p>
+                </div>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label className="text-sm font-medium text-gray-700 block mb-2">Full Name</label>
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="e.g. Rohan Sharma"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="text-sm font-medium text-gray-700 block mb-2">Email Address</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="e.g. rohan@example.com"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="text-sm font-medium text-gray-700 block mb-2">Password</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Choose a strong password"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                            required
+                        />
+                    </div>
+                     <div>
+                        <label className="text-sm font-medium text-gray-700 block mb-2">I am a...</label>
+                        <select
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition bg-white"
+                        >
+                            <option value="ELDERLY">Senior Citizen</option>
+                            <option value="CAREGIVER">Caregiver / Family Member</option>
+                        </select>
+                    </div>
+
+                    {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300"
+                    >
+                        Sign Up
+                    </button>
+                </form>
+                 <p className="text-center text-sm text-gray-500 mt-6">
+                    Already have an account?{' '}
+                    <button onClick={onSwitchMode} className="font-semibold text-blue-600 hover:text-blue-500">
+                        Log In
+                    </button>
+                </p>
+            </div>
+        </div>
+    );
+}
