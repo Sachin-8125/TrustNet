@@ -1,100 +1,51 @@
-const MOCK_USERS = {
-    "elderly-1": {
-        id: "elderly-1", 
-        name: "Mrs. Shreya Kumari", 
-        email: "shreya@gmail.com", 
-        role: "ELDERLY" 
-    },
-    "caregiver-1": { 
-        id: "caregiver-1", 
-        name: "Sachin Kumar", 
-        email: "sachin@gmail.com", 
-        role: "CAREGIVER" 
-    },
-};
+// Determine API base URL from Vite environment variables.
+// Prefer VITE_API_BASE_URL (Vite convention), but also support legacy BACKEND_URL if present.
+const RAW_BASE = import.meta.env.VITE_API_BASE_URL  || 'https://trustnet.onrender.com';
+// Normalize to avoid trailing slash
+const API_BASE = RAW_BASE.replace(/\/$/, '');
 
-const MOCK_TRANSACTIONS = [
-    { 
-        id: "t1", 
-        amount: 750.00, 
-        description: "UPI to Grocer", 
-        type: "UPI", 
-        timestamp: "2024-09-25T10:30:00Z", 
-        isFlagged: false, 
-        alerts: [] 
-    },
-    { 
-        id: "t2", 
-        amount: 25000.00, 
-        description: "Investment Scheme XYZ", 
-        type: "NEFT", 
-        timestamp: "2024-09-25T09:15:00Z", 
-        isFlagged: true, 
-        alerts: [{ 
-            id: 'a1', 
-            message: 'High-value transaction to an unknown investment scheme detected.' 
-        }] 
-    },
-    { 
-        id: "t3", 
-        amount: 1200.00, 
-        description: "Electricity Bill", 
-        type: "Debit Card", 
-        timestamp: "2024-09-24T14:00:00Z", 
-        isFlagged: false, 
-        alerts: [] 
-    },
-    { 
-        id: "t4", 
-        amount: 500.00, 
-        description: "Mobile Recharge", 
-        type: "UPI", 
-        timestamp: "2024-09-23T18:45:00Z", 
-        isFlagged: false, 
-        alerts: [] 
-    },
-    { 
-        id: "t5", 
-        amount: 45000.00, 
-        description: "Claim your prize money", 
-        type: "IMPS", 
-        timestamp: "2024-09-22T11:00:00Z", 
-        isFlagged: true, 
-        alerts: [{ 
-            id: 'a2', 
-            message: 'Transaction contains suspicious keywords ("claim prize"). Please verify.' 
-        }] 
-    },
-];
+async function http(url, { method = 'GET', headers = {}, body } = {}) {
+  const res = await fetch(`${API_BASE}${url}`, {
+    method,
+    headers: { 'Content-Type': 'application/json', ...headers },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => '');
+    throw new Error(text || `Request failed: ${res.status}`);
+  }
+  return res.json();
+}
 
 const api = {
-    login: async(email, password) => {
-        console.log(`Attempting login for ${email}`);
-        if (email === "shreya@gmail.com") {
-            return { token: "fake-token-elderly", user: MOCK_USERS["elderly-1"] };
-        }
-        if (email === "sachin@gmail.com") {
-            return { token: "fake-token-caregiver", user: MOCK_USERS["caregiver-1"] };
-        }
-        throw new Error("Invalid credentials");
-    },
-    getDashboard: async (token) => {
-        console.log(`Fetching dashboard with token: ${token}`);
-        if(token === 'fake-token-elderly') {
-             return { user: MOCK_USERS['elderly-1'], transactions: MOCK_TRANSACTIONS };
-        }
-         if(token === 'fake-token-caregiver') {
-            // Caregiver sees the elderly user's data
-            return { user: MOCK_USERS['caregiver-1'], associatedUser: MOCK_USERS['elderly-1'], transactions: MOCK_TRANSACTIONS };
-        }
-        throw new Error("Unauthorized");
-    },
-    register: async (name, email, password, role) => {
-        console.log(`Attempting to register ${name} with role ${role}`);
-        const newUser = { id: `new-${Date.now()}`, name, email, role };
-        // In a real app, you would add the user to your mock data or database
-        return { token: `fake-token-${role.toLowerCase()}`, user: newUser };
-    }
+  // POST /api/auth/login -> { token, user }
+  login: async (email, password) => {
+    return http('/api/auth/login', {
+      method: 'POST',
+      body: { email, password },
+    });
+  },
+
+  // POST /api/auth/register then login to obtain token
+  register: async (name, email, password, role) => {
+    await http('/api/auth/register', {
+      method: 'POST',
+      body: { name, email, password, role },
+    });
+    // Immediately login to get token and user payload
+    return http('/api/auth/login', {
+      method: 'POST',
+      body: { email, password },
+    });
+  },
+
+  // GET /api/dashboard (auth required)
+  getDashboard: async (token) => {
+    return http('/api/dashboard', {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
 };
 
 export default api;
