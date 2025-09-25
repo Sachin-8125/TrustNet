@@ -1,14 +1,14 @@
 const MOCK_USERS = {
     "elderly-1": {
         id: "elderly-1", 
-        name: "Mrs. Savita Sharma", 
-        email: "savita@example.com", 
+        name: "Mrs. Shreya Kumari", 
+        email: "shreya@gmail.com", 
         role: "ELDERLY" 
     },
     "caregiver-1": { 
         id: "caregiver-1", 
-        name: "Rohan Sharma", 
-        email: "rohan@example.com", 
+        name: "Sachin Kumar", 
+        email: "sachin@gmail.com", 
         role: "CAREGIVER" 
     },
 };
@@ -70,10 +70,10 @@ const MOCK_TRANSACTIONS = [
 const api = {
     login: async(email, password) => {
         console.log(`Attempting login for ${email}`);
-        if (email === "savita@example.com") {
+        if (email === "shreya@gmail.com") {
             return { token: "fake-token-elderly", user: MOCK_USERS["elderly-1"] };
         }
-        if (email === "rohan@example.com") {
+        if (email === "sachin@gmail.com") {
             return { token: "fake-token-caregiver", user: MOCK_USERS["caregiver-1"] };
         }
         throw new Error("Invalid credentials");

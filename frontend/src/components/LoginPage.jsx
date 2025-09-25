@@ -27,11 +27,11 @@ export default function LoginPage({onLogin, error, onSwitchMode}){
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="e.g. savita@example.com"
+                            placeholder="e.g. shreya@gmail.com"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                             required
                         />
-                         <p className="text-xs text-gray-400 mt-1">Hint: Use 'savita@example.com' or 'rohan@example.com'</p>
+                         <p className="text-xs text-gray-400 mt-1">Hint: Use 'shreya@gmail.com' or 'sachin@gmail.com'</p>
                     </div>
                     <div>
                         <label className="text-sm font-medium text-gray-700 block mb-2">Password</label>

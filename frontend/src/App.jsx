@@ -35,7 +35,7 @@ export default function App() {
     }
   };
 
-  const registerHandler = async(name,email,password,role) => {
+  const registerHandler = async ({ name, email, password, role }) => {
     setAuthError('');
     try {
       const data = await api.register(name, email, password, role);

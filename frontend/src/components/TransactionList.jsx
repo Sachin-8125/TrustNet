@@ -1,3 +1,4 @@
+import { AlertTriangleIcon } from './icons';
 export default function TransactionList({transactions}){
     return (
         <div className="bg-white p-6 rounded-2xl shadow-md">

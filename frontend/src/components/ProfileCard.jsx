@@ -1,3 +1,4 @@
+import { UserIcon } from './icons';
 export default function ProfileCard({user}){
     if(!user) return null;
     return (

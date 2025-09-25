@@ -1,5 +1,9 @@
+import Alerts from './Alerts';
+import TransactionList from './TransactionList';
+import ProfileCard from './ProfileCard';
 import { useEffect, useState } from "react";
 import {LogOutIcon} from './icons'
+import api from '../api.js'
 export default function Dashboard({user, token, onLogout}){
     const [data, setData] = useState({ transactions: [], associatedUser: null });
     const [isLoading, setIsLoading] = useState(true);
