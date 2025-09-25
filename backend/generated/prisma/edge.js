@@ -157,7 +157,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "c:\\Hackathon\\fraud-prevention-system\\backend\\generated\\prisma",
+      "value": "C:\\Hackathon\\fraud-prevention-system\\backend\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -171,7 +171,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "c:\\Hackathon\\fraud-prevention-system\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Hackathon\\fraud-prevention-system\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
