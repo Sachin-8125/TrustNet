@@ -29,12 +29,12 @@ const authToken = (req,res,next) => {
 };
 
 //auth routes
-app.post('/api/auth/register',async(req,res)=>{
-    const {email,passsword,name,role} = req.body;
+app.post('/api/auth/register', async (req, res) => {
+    const { email, password, name, role } = req.body;
     if (!email || !password || !name || !role) {
         return res.status(400).json({ error: 'Missing required fields: email, password, name, role' });
     }
-    const hashedPassword = await bcrypt.hash(passsword,10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     try {
         const user = await prisma.user.create({
             data: {
@@ -85,36 +85,41 @@ app.get('/api/dashboard',authToken,async(req,res)=>{
 });
 
 app.post('/api/transactions', authToken, async (req, res) => {
-  const { amount, description, type } = req.body;
-  const userId = req.user.userId;
+    const { amount, description, type } = req.body;
+    const userId = req.user.userId;
 
-  let isFlagged = false;
-  const fraudRiskMessage = 'This transaction is unusual. Please review it carefully.';
+    let isFlagged = false;
+    const fraudRiskMessage = 'This transaction is unusual. Please review it carefully.';
 
-  // Safely normalize inputs
-  const amountNum = Number(amount) || 0;
-  const desc = (description ?? '').toString();
-  const descLower = desc.toLowerCase();
+    // Safely normalize inputs
+    const amountNum = Number(amount) || 0;
+    const desc = (description ?? '').toString();
+    const descLower = desc.toLowerCase();
 
-  if (amountNum > 20000 || descLower.includes('lottery') || descLower.includes('claim prize')) {
-    isFlagged = true;
-  }
-
-  try {
-    const transaction = await prisma.transaction.create({
-      data: { amount: amountNum, description: desc, type, userId, isFlagged },
-    });
-
-    if (isFlagged) {
-      await prisma.alert.create({
-        data: { message: fraudRiskMessage, transactionId: transaction.id }
-      });
+    if (amountNum > 20000 || descLower.includes('lottery') || descLower.includes('claim prize')) {
+        isFlagged = true;
     }
 
-    res.status(201).json(transaction);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to add transaction.' });
-  }
+    try {
+        const transaction = await prisma.transaction.create({
+            data: { amount: amountNum, description: desc, type, userId, isFlagged },
+        });
+
+        if (isFlagged) {
+            await prisma.alert.create({
+                data: { message: fraudRiskMessage, transactionId: transaction.id }
+            });
+        }
+
+        res.status(201).json(transaction);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to add transaction.' });
+    }
 });
+
+// health check for Render
+app.get('/health', (req, res) => {
+    res.status(200).send('ok')
+})
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
