@@ -13,3 +13,60 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  password        String // Hashed password
+  name            String
+  role            Role     @default(ELDERLY)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // For elderly users
+  transactions    Transaction[]
+  trustedContacts TrustedContact[] @relation("elderlyUser")
+
+  // For caregiver users
+  caringFor       TrustedContact[] @relation("caregiverUser")
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  amount      Float
+  description String
+  type        String // e.g., 'UPI', 'NEFT', 'Debit Card'
+  timestamp   DateTime @default(now())
+  isFlagged   Boolean  @default(false)
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  alerts      Alert[]
+}
+
+model TrustedContact {
+  id              String   @id @default(cuid())
+  
+  elderlyId       String
+  elderlyUser     User     @relation("elderlyUser", fields: [elderlyId], references: [id])
+
+  caregiverId     String
+  caregiverUser   User     @relation("caregiverUser", fields: [caregiverId], references: [id])
+
+  @@unique([elderlyId, caregiverId])
+}
+
+model Alert {
+    id          String @id @default(cuid())
+    message     String
+    isRead      Boolean @default(false)
+    createdAt   DateTime @default(now())
+
+    transactionId String
+    transaction   Transaction @relation(fields: [transactionId], references: [id])
+}
+
+enum Role {
+  ELDERLY
+  CAREGIVER
+}
