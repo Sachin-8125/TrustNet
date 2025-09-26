@@ -1151,14 +1151,14 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     transactions: number
-    trustedContacts: number
     caringFor: number
+    trustedContacts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transactions?: boolean | UserCountOutputTypeCountTransactionsArgs
-    trustedContacts?: boolean | UserCountOutputTypeCountTrustedContactsArgs
     caringFor?: boolean | UserCountOutputTypeCountCaringForArgs
+    trustedContacts?: boolean | UserCountOutputTypeCountTrustedContactsArgs
   }
 
   // Custom InputTypes
@@ -1182,14 +1182,14 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountTrustedContactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountCaringForArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TrustedContactWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountCaringForArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountTrustedContactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TrustedContactWhereInput
   }
 
@@ -1410,8 +1410,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     transactions?: boolean | User$transactionsArgs<ExtArgs>
-    trustedContacts?: boolean | User$trustedContactsArgs<ExtArgs>
     caringFor?: boolean | User$caringForArgs<ExtArgs>
+    trustedContacts?: boolean | User$trustedContactsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1448,8 +1448,8 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "name" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transactions?: boolean | User$transactionsArgs<ExtArgs>
-    trustedContacts?: boolean | User$trustedContactsArgs<ExtArgs>
     caringFor?: boolean | User$caringForArgs<ExtArgs>
+    trustedContacts?: boolean | User$trustedContactsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1459,8 +1459,8 @@ export namespace Prisma {
     name: "User"
     objects: {
       transactions: Prisma.$TransactionPayload<ExtArgs>[]
-      trustedContacts: Prisma.$TrustedContactPayload<ExtArgs>[]
       caringFor: Prisma.$TrustedContactPayload<ExtArgs>[]
+      trustedContacts: Prisma.$TrustedContactPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1865,8 +1865,8 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     transactions<T extends User$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    trustedContacts<T extends User$trustedContactsArgs<ExtArgs> = {}>(args?: Subset<T, User$trustedContactsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrustedContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     caringFor<T extends User$caringForArgs<ExtArgs> = {}>(args?: Subset<T, User$caringForArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrustedContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    trustedContacts<T extends User$trustedContactsArgs<ExtArgs> = {}>(args?: Subset<T, User$trustedContactsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrustedContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2315,9 +2315,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.trustedContacts
+   * User.caringFor
    */
-  export type User$trustedContactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$caringForArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the TrustedContact
      */
@@ -2339,9 +2339,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.caringFor
+   * User.trustedContacts
    */
-  export type User$caringForArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$trustedContactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the TrustedContact
      */
@@ -2595,8 +2595,8 @@ export namespace Prisma {
     timestamp?: boolean
     isFlagged?: boolean
     userId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     alerts?: boolean | Transaction$alertsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | TransactionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["transaction"]>
 
@@ -2634,8 +2634,8 @@ export namespace Prisma {
 
   export type TransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "description" | "type" | "timestamp" | "isFlagged" | "userId", ExtArgs["result"]["transaction"]>
   export type TransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     alerts?: boolean | Transaction$alertsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | TransactionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TransactionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2648,8 +2648,8 @@ export namespace Prisma {
   export type $TransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Transaction"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       alerts: Prisma.$AlertPayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3053,8 +3053,8 @@ export namespace Prisma {
    */
   export interface Prisma__TransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     alerts<T extends Transaction$alertsArgs<ExtArgs> = {}>(args?: Subset<T, Transaction$alertsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AlertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3677,24 +3677,24 @@ export namespace Prisma {
     id?: boolean
     elderlyId?: boolean
     caregiverId?: boolean
-    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
     caregiverUser?: boolean | UserDefaultArgs<ExtArgs>
+    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trustedContact"]>
 
   export type TrustedContactSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     elderlyId?: boolean
     caregiverId?: boolean
-    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
     caregiverUser?: boolean | UserDefaultArgs<ExtArgs>
+    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trustedContact"]>
 
   export type TrustedContactSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     elderlyId?: boolean
     caregiverId?: boolean
-    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
     caregiverUser?: boolean | UserDefaultArgs<ExtArgs>
+    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trustedContact"]>
 
   export type TrustedContactSelectScalar = {
@@ -3705,23 +3705,23 @@ export namespace Prisma {
 
   export type TrustedContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "elderlyId" | "caregiverId", ExtArgs["result"]["trustedContact"]>
   export type TrustedContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
     caregiverUser?: boolean | UserDefaultArgs<ExtArgs>
+    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type TrustedContactIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
     caregiverUser?: boolean | UserDefaultArgs<ExtArgs>
+    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type TrustedContactIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
     caregiverUser?: boolean | UserDefaultArgs<ExtArgs>
+    elderlyUser?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $TrustedContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TrustedContact"
     objects: {
-      elderlyUser: Prisma.$UserPayload<ExtArgs>
       caregiverUser: Prisma.$UserPayload<ExtArgs>
+      elderlyUser: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4121,8 +4121,8 @@ export namespace Prisma {
    */
   export interface Prisma__TrustedContactClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    elderlyUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     caregiverUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    elderlyUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5800,8 +5800,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     transactions?: TransactionListRelationFilter
-    trustedContacts?: TrustedContactListRelationFilter
     caringFor?: TrustedContactListRelationFilter
+    trustedContacts?: TrustedContactListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -5813,8 +5813,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     transactions?: TransactionOrderByRelationAggregateInput
-    trustedContacts?: TrustedContactOrderByRelationAggregateInput
     caringFor?: TrustedContactOrderByRelationAggregateInput
+    trustedContacts?: TrustedContactOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -5829,8 +5829,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     transactions?: TransactionListRelationFilter
-    trustedContacts?: TrustedContactListRelationFilter
     caringFor?: TrustedContactListRelationFilter
+    trustedContacts?: TrustedContactListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -5870,8 +5870,8 @@ export namespace Prisma {
     timestamp?: DateTimeFilter<"Transaction"> | Date | string
     isFlagged?: BoolFilter<"Transaction"> | boolean
     userId?: StringFilter<"Transaction"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     alerts?: AlertListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type TransactionOrderByWithRelationInput = {
@@ -5882,8 +5882,8 @@ export namespace Prisma {
     timestamp?: SortOrder
     isFlagged?: SortOrder
     userId?: SortOrder
-    user?: UserOrderByWithRelationInput
     alerts?: AlertOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type TransactionWhereUniqueInput = Prisma.AtLeast<{
@@ -5897,8 +5897,8 @@ export namespace Prisma {
     timestamp?: DateTimeFilter<"Transaction"> | Date | string
     isFlagged?: BoolFilter<"Transaction"> | boolean
     userId?: StringFilter<"Transaction"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     alerts?: AlertListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type TransactionOrderByWithAggregationInput = {
@@ -5936,16 +5936,16 @@ export namespace Prisma {
     id?: StringFilter<"TrustedContact"> | string
     elderlyId?: StringFilter<"TrustedContact"> | string
     caregiverId?: StringFilter<"TrustedContact"> | string
-    elderlyUser?: XOR<UserScalarRelationFilter, UserWhereInput>
     caregiverUser?: XOR<UserScalarRelationFilter, UserWhereInput>
+    elderlyUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type TrustedContactOrderByWithRelationInput = {
     id?: SortOrder
     elderlyId?: SortOrder
     caregiverId?: SortOrder
-    elderlyUser?: UserOrderByWithRelationInput
     caregiverUser?: UserOrderByWithRelationInput
+    elderlyUser?: UserOrderByWithRelationInput
   }
 
   export type TrustedContactWhereUniqueInput = Prisma.AtLeast<{
@@ -5956,8 +5956,8 @@ export namespace Prisma {
     NOT?: TrustedContactWhereInput | TrustedContactWhereInput[]
     elderlyId?: StringFilter<"TrustedContact"> | string
     caregiverId?: StringFilter<"TrustedContact"> | string
-    elderlyUser?: XOR<UserScalarRelationFilter, UserWhereInput>
     caregiverUser?: XOR<UserScalarRelationFilter, UserWhereInput>
+    elderlyUser?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "elderlyId_caregiverId">
 
   export type TrustedContactOrderByWithAggregationInput = {
@@ -6042,8 +6042,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
-    trustedContacts?: TrustedContactCreateNestedManyWithoutElderlyUserInput
     caringFor?: TrustedContactCreateNestedManyWithoutCaregiverUserInput
+    trustedContacts?: TrustedContactCreateNestedManyWithoutElderlyUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -6055,8 +6055,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
-    trustedContacts?: TrustedContactUncheckedCreateNestedManyWithoutElderlyUserInput
     caringFor?: TrustedContactUncheckedCreateNestedManyWithoutCaregiverUserInput
+    trustedContacts?: TrustedContactUncheckedCreateNestedManyWithoutElderlyUserInput
   }
 
   export type UserUpdateInput = {
@@ -6068,8 +6068,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
-    trustedContacts?: TrustedContactUpdateManyWithoutElderlyUserNestedInput
     caringFor?: TrustedContactUpdateManyWithoutCaregiverUserNestedInput
+    trustedContacts?: TrustedContactUpdateManyWithoutElderlyUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6081,8 +6081,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
-    trustedContacts?: TrustedContactUncheckedUpdateManyWithoutElderlyUserNestedInput
     caringFor?: TrustedContactUncheckedUpdateManyWithoutCaregiverUserNestedInput
+    trustedContacts?: TrustedContactUncheckedUpdateManyWithoutElderlyUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6122,8 +6122,8 @@ export namespace Prisma {
     type: string
     timestamp?: Date | string
     isFlagged?: boolean
-    user: UserCreateNestedOneWithoutTransactionsInput
     alerts?: AlertCreateNestedManyWithoutTransactionInput
+    user: UserCreateNestedOneWithoutTransactionsInput
   }
 
   export type TransactionUncheckedCreateInput = {
@@ -6144,8 +6144,8 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     isFlagged?: BoolFieldUpdateOperationsInput | boolean
-    user?: UserUpdateOneRequiredWithoutTransactionsNestedInput
     alerts?: AlertUpdateManyWithoutTransactionNestedInput
+    user?: UserUpdateOneRequiredWithoutTransactionsNestedInput
   }
 
   export type TransactionUncheckedUpdateInput = {
@@ -6190,8 +6190,8 @@ export namespace Prisma {
 
   export type TrustedContactCreateInput = {
     id?: string
-    elderlyUser: UserCreateNestedOneWithoutTrustedContactsInput
     caregiverUser: UserCreateNestedOneWithoutCaringForInput
+    elderlyUser: UserCreateNestedOneWithoutTrustedContactsInput
   }
 
   export type TrustedContactUncheckedCreateInput = {
@@ -6202,8 +6202,8 @@ export namespace Prisma {
 
   export type TrustedContactUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    elderlyUser?: UserUpdateOneRequiredWithoutTrustedContactsNestedInput
     caregiverUser?: UserUpdateOneRequiredWithoutCaringForNestedInput
+    elderlyUser?: UserUpdateOneRequiredWithoutTrustedContactsNestedInput
   }
 
   export type TrustedContactUncheckedUpdateInput = {
@@ -6424,15 +6424,15 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
   export type AlertListRelationFilter = {
     every?: AlertWhereInput
     some?: AlertWhereInput
     none?: AlertWhereInput
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type AlertOrderByRelationAggregateInput = {
@@ -6560,17 +6560,17 @@ export namespace Prisma {
     connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
   }
 
-  export type TrustedContactCreateNestedManyWithoutElderlyUserInput = {
-    create?: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput> | TrustedContactCreateWithoutElderlyUserInput[] | TrustedContactUncheckedCreateWithoutElderlyUserInput[]
-    connectOrCreate?: TrustedContactCreateOrConnectWithoutElderlyUserInput | TrustedContactCreateOrConnectWithoutElderlyUserInput[]
-    createMany?: TrustedContactCreateManyElderlyUserInputEnvelope
-    connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-  }
-
   export type TrustedContactCreateNestedManyWithoutCaregiverUserInput = {
     create?: XOR<TrustedContactCreateWithoutCaregiverUserInput, TrustedContactUncheckedCreateWithoutCaregiverUserInput> | TrustedContactCreateWithoutCaregiverUserInput[] | TrustedContactUncheckedCreateWithoutCaregiverUserInput[]
     connectOrCreate?: TrustedContactCreateOrConnectWithoutCaregiverUserInput | TrustedContactCreateOrConnectWithoutCaregiverUserInput[]
     createMany?: TrustedContactCreateManyCaregiverUserInputEnvelope
+    connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+  }
+
+  export type TrustedContactCreateNestedManyWithoutElderlyUserInput = {
+    create?: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput> | TrustedContactCreateWithoutElderlyUserInput[] | TrustedContactUncheckedCreateWithoutElderlyUserInput[]
+    connectOrCreate?: TrustedContactCreateOrConnectWithoutElderlyUserInput | TrustedContactCreateOrConnectWithoutElderlyUserInput[]
+    createMany?: TrustedContactCreateManyElderlyUserInputEnvelope
     connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
   }
 
@@ -6581,17 +6581,17 @@ export namespace Prisma {
     connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
   }
 
-  export type TrustedContactUncheckedCreateNestedManyWithoutElderlyUserInput = {
-    create?: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput> | TrustedContactCreateWithoutElderlyUserInput[] | TrustedContactUncheckedCreateWithoutElderlyUserInput[]
-    connectOrCreate?: TrustedContactCreateOrConnectWithoutElderlyUserInput | TrustedContactCreateOrConnectWithoutElderlyUserInput[]
-    createMany?: TrustedContactCreateManyElderlyUserInputEnvelope
-    connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-  }
-
   export type TrustedContactUncheckedCreateNestedManyWithoutCaregiverUserInput = {
     create?: XOR<TrustedContactCreateWithoutCaregiverUserInput, TrustedContactUncheckedCreateWithoutCaregiverUserInput> | TrustedContactCreateWithoutCaregiverUserInput[] | TrustedContactUncheckedCreateWithoutCaregiverUserInput[]
     connectOrCreate?: TrustedContactCreateOrConnectWithoutCaregiverUserInput | TrustedContactCreateOrConnectWithoutCaregiverUserInput[]
     createMany?: TrustedContactCreateManyCaregiverUserInputEnvelope
+    connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+  }
+
+  export type TrustedContactUncheckedCreateNestedManyWithoutElderlyUserInput = {
+    create?: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput> | TrustedContactCreateWithoutElderlyUserInput[] | TrustedContactUncheckedCreateWithoutElderlyUserInput[]
+    connectOrCreate?: TrustedContactCreateOrConnectWithoutElderlyUserInput | TrustedContactCreateOrConnectWithoutElderlyUserInput[]
+    createMany?: TrustedContactCreateManyElderlyUserInputEnvelope
     connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
   }
 
@@ -6621,20 +6621,6 @@ export namespace Prisma {
     deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
   }
 
-  export type TrustedContactUpdateManyWithoutElderlyUserNestedInput = {
-    create?: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput> | TrustedContactCreateWithoutElderlyUserInput[] | TrustedContactUncheckedCreateWithoutElderlyUserInput[]
-    connectOrCreate?: TrustedContactCreateOrConnectWithoutElderlyUserInput | TrustedContactCreateOrConnectWithoutElderlyUserInput[]
-    upsert?: TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput | TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput[]
-    createMany?: TrustedContactCreateManyElderlyUserInputEnvelope
-    set?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-    disconnect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-    delete?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-    connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-    update?: TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput | TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput[]
-    updateMany?: TrustedContactUpdateManyWithWhereWithoutElderlyUserInput | TrustedContactUpdateManyWithWhereWithoutElderlyUserInput[]
-    deleteMany?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
-  }
-
   export type TrustedContactUpdateManyWithoutCaregiverUserNestedInput = {
     create?: XOR<TrustedContactCreateWithoutCaregiverUserInput, TrustedContactUncheckedCreateWithoutCaregiverUserInput> | TrustedContactCreateWithoutCaregiverUserInput[] | TrustedContactUncheckedCreateWithoutCaregiverUserInput[]
     connectOrCreate?: TrustedContactCreateOrConnectWithoutCaregiverUserInput | TrustedContactCreateOrConnectWithoutCaregiverUserInput[]
@@ -6646,6 +6632,20 @@ export namespace Prisma {
     connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
     update?: TrustedContactUpdateWithWhereUniqueWithoutCaregiverUserInput | TrustedContactUpdateWithWhereUniqueWithoutCaregiverUserInput[]
     updateMany?: TrustedContactUpdateManyWithWhereWithoutCaregiverUserInput | TrustedContactUpdateManyWithWhereWithoutCaregiverUserInput[]
+    deleteMany?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
+  }
+
+  export type TrustedContactUpdateManyWithoutElderlyUserNestedInput = {
+    create?: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput> | TrustedContactCreateWithoutElderlyUserInput[] | TrustedContactUncheckedCreateWithoutElderlyUserInput[]
+    connectOrCreate?: TrustedContactCreateOrConnectWithoutElderlyUserInput | TrustedContactCreateOrConnectWithoutElderlyUserInput[]
+    upsert?: TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput | TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput[]
+    createMany?: TrustedContactCreateManyElderlyUserInputEnvelope
+    set?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+    disconnect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+    delete?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+    connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+    update?: TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput | TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput[]
+    updateMany?: TrustedContactUpdateManyWithWhereWithoutElderlyUserInput | TrustedContactUpdateManyWithWhereWithoutElderlyUserInput[]
     deleteMany?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
   }
 
@@ -6663,20 +6663,6 @@ export namespace Prisma {
     deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
   }
 
-  export type TrustedContactUncheckedUpdateManyWithoutElderlyUserNestedInput = {
-    create?: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput> | TrustedContactCreateWithoutElderlyUserInput[] | TrustedContactUncheckedCreateWithoutElderlyUserInput[]
-    connectOrCreate?: TrustedContactCreateOrConnectWithoutElderlyUserInput | TrustedContactCreateOrConnectWithoutElderlyUserInput[]
-    upsert?: TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput | TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput[]
-    createMany?: TrustedContactCreateManyElderlyUserInputEnvelope
-    set?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-    disconnect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-    delete?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-    connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
-    update?: TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput | TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput[]
-    updateMany?: TrustedContactUpdateManyWithWhereWithoutElderlyUserInput | TrustedContactUpdateManyWithWhereWithoutElderlyUserInput[]
-    deleteMany?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
-  }
-
   export type TrustedContactUncheckedUpdateManyWithoutCaregiverUserNestedInput = {
     create?: XOR<TrustedContactCreateWithoutCaregiverUserInput, TrustedContactUncheckedCreateWithoutCaregiverUserInput> | TrustedContactCreateWithoutCaregiverUserInput[] | TrustedContactUncheckedCreateWithoutCaregiverUserInput[]
     connectOrCreate?: TrustedContactCreateOrConnectWithoutCaregiverUserInput | TrustedContactCreateOrConnectWithoutCaregiverUserInput[]
@@ -6691,10 +6677,18 @@ export namespace Prisma {
     deleteMany?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutTransactionsInput = {
-    create?: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutTransactionsInput
-    connect?: UserWhereUniqueInput
+  export type TrustedContactUncheckedUpdateManyWithoutElderlyUserNestedInput = {
+    create?: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput> | TrustedContactCreateWithoutElderlyUserInput[] | TrustedContactUncheckedCreateWithoutElderlyUserInput[]
+    connectOrCreate?: TrustedContactCreateOrConnectWithoutElderlyUserInput | TrustedContactCreateOrConnectWithoutElderlyUserInput[]
+    upsert?: TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput | TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput[]
+    createMany?: TrustedContactCreateManyElderlyUserInputEnvelope
+    set?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+    disconnect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+    delete?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+    connect?: TrustedContactWhereUniqueInput | TrustedContactWhereUniqueInput[]
+    update?: TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput | TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput[]
+    updateMany?: TrustedContactUpdateManyWithWhereWithoutElderlyUserInput | TrustedContactUpdateManyWithWhereWithoutElderlyUserInput[]
+    deleteMany?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
   }
 
   export type AlertCreateNestedManyWithoutTransactionInput = {
@@ -6702,6 +6696,12 @@ export namespace Prisma {
     connectOrCreate?: AlertCreateOrConnectWithoutTransactionInput | AlertCreateOrConnectWithoutTransactionInput[]
     createMany?: AlertCreateManyTransactionInputEnvelope
     connect?: AlertWhereUniqueInput | AlertWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedOneWithoutTransactionsInput = {
+    create?: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTransactionsInput
+    connect?: UserWhereUniqueInput
   }
 
   export type AlertUncheckedCreateNestedManyWithoutTransactionInput = {
@@ -6723,14 +6723,6 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type UserUpdateOneRequiredWithoutTransactionsNestedInput = {
-    create?: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutTransactionsInput
-    upsert?: UserUpsertWithoutTransactionsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTransactionsInput, UserUpdateWithoutTransactionsInput>, UserUncheckedUpdateWithoutTransactionsInput>
-  }
-
   export type AlertUpdateManyWithoutTransactionNestedInput = {
     create?: XOR<AlertCreateWithoutTransactionInput, AlertUncheckedCreateWithoutTransactionInput> | AlertCreateWithoutTransactionInput[] | AlertUncheckedCreateWithoutTransactionInput[]
     connectOrCreate?: AlertCreateOrConnectWithoutTransactionInput | AlertCreateOrConnectWithoutTransactionInput[]
@@ -6743,6 +6735,14 @@ export namespace Prisma {
     update?: AlertUpdateWithWhereUniqueWithoutTransactionInput | AlertUpdateWithWhereUniqueWithoutTransactionInput[]
     updateMany?: AlertUpdateManyWithWhereWithoutTransactionInput | AlertUpdateManyWithWhereWithoutTransactionInput[]
     deleteMany?: AlertScalarWhereInput | AlertScalarWhereInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutTransactionsNestedInput = {
+    create?: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTransactionsInput
+    upsert?: UserUpsertWithoutTransactionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTransactionsInput, UserUpdateWithoutTransactionsInput>, UserUncheckedUpdateWithoutTransactionsInput>
   }
 
   export type AlertUncheckedUpdateManyWithoutTransactionNestedInput = {
@@ -6759,24 +6759,16 @@ export namespace Prisma {
     deleteMany?: AlertScalarWhereInput | AlertScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutTrustedContactsInput = {
-    create?: XOR<UserCreateWithoutTrustedContactsInput, UserUncheckedCreateWithoutTrustedContactsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutTrustedContactsInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type UserCreateNestedOneWithoutCaringForInput = {
     create?: XOR<UserCreateWithoutCaringForInput, UserUncheckedCreateWithoutCaringForInput>
     connectOrCreate?: UserCreateOrConnectWithoutCaringForInput
     connect?: UserWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutTrustedContactsNestedInput = {
+  export type UserCreateNestedOneWithoutTrustedContactsInput = {
     create?: XOR<UserCreateWithoutTrustedContactsInput, UserUncheckedCreateWithoutTrustedContactsInput>
     connectOrCreate?: UserCreateOrConnectWithoutTrustedContactsInput
-    upsert?: UserUpsertWithoutTrustedContactsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrustedContactsInput, UserUpdateWithoutTrustedContactsInput>, UserUncheckedUpdateWithoutTrustedContactsInput>
   }
 
   export type UserUpdateOneRequiredWithoutCaringForNestedInput = {
@@ -6785,6 +6777,14 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCaringForInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCaringForInput, UserUpdateWithoutCaringForInput>, UserUncheckedUpdateWithoutCaringForInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutTrustedContactsNestedInput = {
+    create?: XOR<UserCreateWithoutTrustedContactsInput, UserUncheckedCreateWithoutTrustedContactsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrustedContactsInput
+    upsert?: UserUpsertWithoutTrustedContactsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrustedContactsInput, UserUpdateWithoutTrustedContactsInput>, UserUncheckedUpdateWithoutTrustedContactsInput>
   }
 
   export type TransactionCreateNestedOneWithoutAlertsInput = {
@@ -6955,26 +6955,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type TrustedContactCreateWithoutElderlyUserInput = {
-    id?: string
-    caregiverUser: UserCreateNestedOneWithoutCaringForInput
-  }
-
-  export type TrustedContactUncheckedCreateWithoutElderlyUserInput = {
-    id?: string
-    caregiverId: string
-  }
-
-  export type TrustedContactCreateOrConnectWithoutElderlyUserInput = {
-    where: TrustedContactWhereUniqueInput
-    create: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput>
-  }
-
-  export type TrustedContactCreateManyElderlyUserInputEnvelope = {
-    data: TrustedContactCreateManyElderlyUserInput | TrustedContactCreateManyElderlyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type TrustedContactCreateWithoutCaregiverUserInput = {
     id?: string
     elderlyUser: UserCreateNestedOneWithoutTrustedContactsInput
@@ -6992,6 +6972,26 @@ export namespace Prisma {
 
   export type TrustedContactCreateManyCaregiverUserInputEnvelope = {
     data: TrustedContactCreateManyCaregiverUserInput | TrustedContactCreateManyCaregiverUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TrustedContactCreateWithoutElderlyUserInput = {
+    id?: string
+    caregiverUser: UserCreateNestedOneWithoutCaringForInput
+  }
+
+  export type TrustedContactUncheckedCreateWithoutElderlyUserInput = {
+    id?: string
+    caregiverId: string
+  }
+
+  export type TrustedContactCreateOrConnectWithoutElderlyUserInput = {
+    where: TrustedContactWhereUniqueInput
+    create: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput>
+  }
+
+  export type TrustedContactCreateManyElderlyUserInputEnvelope = {
+    data: TrustedContactCreateManyElderlyUserInput | TrustedContactCreateManyElderlyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -7024,31 +7024,6 @@ export namespace Prisma {
     userId?: StringFilter<"Transaction"> | string
   }
 
-  export type TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput = {
-    where: TrustedContactWhereUniqueInput
-    update: XOR<TrustedContactUpdateWithoutElderlyUserInput, TrustedContactUncheckedUpdateWithoutElderlyUserInput>
-    create: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput>
-  }
-
-  export type TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput = {
-    where: TrustedContactWhereUniqueInput
-    data: XOR<TrustedContactUpdateWithoutElderlyUserInput, TrustedContactUncheckedUpdateWithoutElderlyUserInput>
-  }
-
-  export type TrustedContactUpdateManyWithWhereWithoutElderlyUserInput = {
-    where: TrustedContactScalarWhereInput
-    data: XOR<TrustedContactUpdateManyMutationInput, TrustedContactUncheckedUpdateManyWithoutElderlyUserInput>
-  }
-
-  export type TrustedContactScalarWhereInput = {
-    AND?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
-    OR?: TrustedContactScalarWhereInput[]
-    NOT?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
-    id?: StringFilter<"TrustedContact"> | string
-    elderlyId?: StringFilter<"TrustedContact"> | string
-    caregiverId?: StringFilter<"TrustedContact"> | string
-  }
-
   export type TrustedContactUpsertWithWhereUniqueWithoutCaregiverUserInput = {
     where: TrustedContactWhereUniqueInput
     update: XOR<TrustedContactUpdateWithoutCaregiverUserInput, TrustedContactUncheckedUpdateWithoutCaregiverUserInput>
@@ -7065,33 +7040,29 @@ export namespace Prisma {
     data: XOR<TrustedContactUpdateManyMutationInput, TrustedContactUncheckedUpdateManyWithoutCaregiverUserInput>
   }
 
-  export type UserCreateWithoutTransactionsInput = {
-    id?: string
-    email: string
-    password: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trustedContacts?: TrustedContactCreateNestedManyWithoutElderlyUserInput
-    caringFor?: TrustedContactCreateNestedManyWithoutCaregiverUserInput
+  export type TrustedContactScalarWhereInput = {
+    AND?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
+    OR?: TrustedContactScalarWhereInput[]
+    NOT?: TrustedContactScalarWhereInput | TrustedContactScalarWhereInput[]
+    id?: StringFilter<"TrustedContact"> | string
+    elderlyId?: StringFilter<"TrustedContact"> | string
+    caregiverId?: StringFilter<"TrustedContact"> | string
   }
 
-  export type UserUncheckedCreateWithoutTransactionsInput = {
-    id?: string
-    email: string
-    password: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trustedContacts?: TrustedContactUncheckedCreateNestedManyWithoutElderlyUserInput
-    caringFor?: TrustedContactUncheckedCreateNestedManyWithoutCaregiverUserInput
+  export type TrustedContactUpsertWithWhereUniqueWithoutElderlyUserInput = {
+    where: TrustedContactWhereUniqueInput
+    update: XOR<TrustedContactUpdateWithoutElderlyUserInput, TrustedContactUncheckedUpdateWithoutElderlyUserInput>
+    create: XOR<TrustedContactCreateWithoutElderlyUserInput, TrustedContactUncheckedCreateWithoutElderlyUserInput>
   }
 
-  export type UserCreateOrConnectWithoutTransactionsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+  export type TrustedContactUpdateWithWhereUniqueWithoutElderlyUserInput = {
+    where: TrustedContactWhereUniqueInput
+    data: XOR<TrustedContactUpdateWithoutElderlyUserInput, TrustedContactUncheckedUpdateWithoutElderlyUserInput>
+  }
+
+  export type TrustedContactUpdateManyWithWhereWithoutElderlyUserInput = {
+    where: TrustedContactScalarWhereInput
+    data: XOR<TrustedContactUpdateManyMutationInput, TrustedContactUncheckedUpdateManyWithoutElderlyUserInput>
   }
 
   export type AlertCreateWithoutTransactionInput = {
@@ -7118,39 +7089,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutTransactionsInput = {
-    update: XOR<UserUpdateWithoutTransactionsInput, UserUncheckedUpdateWithoutTransactionsInput>
+  export type UserCreateWithoutTransactionsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    caringFor?: TrustedContactCreateNestedManyWithoutCaregiverUserInput
+    trustedContacts?: TrustedContactCreateNestedManyWithoutElderlyUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTransactionsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    caringFor?: TrustedContactUncheckedCreateNestedManyWithoutCaregiverUserInput
+    trustedContacts?: TrustedContactUncheckedCreateNestedManyWithoutElderlyUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTransactionsInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutTransactionsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutTransactionsInput, UserUncheckedUpdateWithoutTransactionsInput>
-  }
-
-  export type UserUpdateWithoutTransactionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trustedContacts?: TrustedContactUpdateManyWithoutElderlyUserNestedInput
-    caringFor?: TrustedContactUpdateManyWithoutCaregiverUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutTransactionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trustedContacts?: TrustedContactUncheckedUpdateManyWithoutElderlyUserNestedInput
-    caringFor?: TrustedContactUncheckedUpdateManyWithoutCaregiverUserNestedInput
   }
 
   export type AlertUpsertWithWhereUniqueWithoutTransactionInput = {
@@ -7180,33 +7145,39 @@ export namespace Prisma {
     transactionId?: StringFilter<"Alert"> | string
   }
 
-  export type UserCreateWithoutTrustedContactsInput = {
-    id?: string
-    email: string
-    password: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    transactions?: TransactionCreateNestedManyWithoutUserInput
-    caringFor?: TrustedContactCreateNestedManyWithoutCaregiverUserInput
+  export type UserUpsertWithoutTransactionsInput = {
+    update: XOR<UserUpdateWithoutTransactionsInput, UserUncheckedUpdateWithoutTransactionsInput>
+    create: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+    where?: UserWhereInput
   }
 
-  export type UserUncheckedCreateWithoutTrustedContactsInput = {
-    id?: string
-    email: string
-    password: string
-    name: string
-    role?: $Enums.Role
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
-    caringFor?: TrustedContactUncheckedCreateNestedManyWithoutCaregiverUserInput
+  export type UserUpdateToOneWithWhereWithoutTransactionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTransactionsInput, UserUncheckedUpdateWithoutTransactionsInput>
   }
 
-  export type UserCreateOrConnectWithoutTrustedContactsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutTrustedContactsInput, UserUncheckedCreateWithoutTrustedContactsInput>
+  export type UserUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    caringFor?: TrustedContactUpdateManyWithoutCaregiverUserNestedInput
+    trustedContacts?: TrustedContactUpdateManyWithoutElderlyUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    caringFor?: TrustedContactUncheckedUpdateManyWithoutCaregiverUserNestedInput
+    trustedContacts?: TrustedContactUncheckedUpdateManyWithoutElderlyUserNestedInput
   }
 
   export type UserCreateWithoutCaringForInput = {
@@ -7238,39 +7209,33 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutCaringForInput, UserUncheckedCreateWithoutCaringForInput>
   }
 
-  export type UserUpsertWithoutTrustedContactsInput = {
-    update: XOR<UserUpdateWithoutTrustedContactsInput, UserUncheckedUpdateWithoutTrustedContactsInput>
+  export type UserCreateWithoutTrustedContactsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    caringFor?: TrustedContactCreateNestedManyWithoutCaregiverUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTrustedContactsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    caringFor?: TrustedContactUncheckedCreateNestedManyWithoutCaregiverUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTrustedContactsInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutTrustedContactsInput, UserUncheckedCreateWithoutTrustedContactsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutTrustedContactsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutTrustedContactsInput, UserUncheckedUpdateWithoutTrustedContactsInput>
-  }
-
-  export type UserUpdateWithoutTrustedContactsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    transactions?: TransactionUpdateManyWithoutUserNestedInput
-    caringFor?: TrustedContactUpdateManyWithoutCaregiverUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutTrustedContactsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
-    caringFor?: TrustedContactUncheckedUpdateManyWithoutCaregiverUserNestedInput
   }
 
   export type UserUpsertWithoutCaringForInput = {
@@ -7306,6 +7271,41 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     trustedContacts?: TrustedContactUncheckedUpdateManyWithoutElderlyUserNestedInput
+  }
+
+  export type UserUpsertWithoutTrustedContactsInput = {
+    update: XOR<UserUpdateWithoutTrustedContactsInput, UserUncheckedUpdateWithoutTrustedContactsInput>
+    create: XOR<UserCreateWithoutTrustedContactsInput, UserUncheckedCreateWithoutTrustedContactsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTrustedContactsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTrustedContactsInput, UserUncheckedUpdateWithoutTrustedContactsInput>
+  }
+
+  export type UserUpdateWithoutTrustedContactsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    caringFor?: TrustedContactUpdateManyWithoutCaregiverUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTrustedContactsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    caringFor?: TrustedContactUncheckedUpdateManyWithoutCaregiverUserNestedInput
   }
 
   export type TransactionCreateWithoutAlertsInput = {
@@ -7373,14 +7373,14 @@ export namespace Prisma {
     isFlagged?: boolean
   }
 
-  export type TrustedContactCreateManyElderlyUserInput = {
-    id?: string
-    caregiverId: string
-  }
-
   export type TrustedContactCreateManyCaregiverUserInput = {
     id?: string
     elderlyId: string
+  }
+
+  export type TrustedContactCreateManyElderlyUserInput = {
+    id?: string
+    caregiverId: string
   }
 
   export type TransactionUpdateWithoutUserInput = {
@@ -7412,21 +7412,6 @@ export namespace Prisma {
     isFlagged?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type TrustedContactUpdateWithoutElderlyUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    caregiverUser?: UserUpdateOneRequiredWithoutCaringForNestedInput
-  }
-
-  export type TrustedContactUncheckedUpdateWithoutElderlyUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    caregiverId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TrustedContactUncheckedUpdateManyWithoutElderlyUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    caregiverId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type TrustedContactUpdateWithoutCaregiverUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     elderlyUser?: UserUpdateOneRequiredWithoutTrustedContactsNestedInput
@@ -7440,6 +7425,21 @@ export namespace Prisma {
   export type TrustedContactUncheckedUpdateManyWithoutCaregiverUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     elderlyId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TrustedContactUpdateWithoutElderlyUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    caregiverUser?: UserUpdateOneRequiredWithoutCaringForNestedInput
+  }
+
+  export type TrustedContactUncheckedUpdateWithoutElderlyUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    caregiverId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TrustedContactUncheckedUpdateManyWithoutElderlyUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    caregiverId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AlertCreateManyTransactionInput = {

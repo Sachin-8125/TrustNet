@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -15,53 +9,45 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String // Hashed password
-  name      String
-  role      Role     @default(ELDERLY)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // For elderly users
+  id              String           @id @default(cuid())
+  email           String           @unique
+  password        String
+  name            String
+  role            Role             @default(ELDERLY)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
   transactions    Transaction[]
+  caringFor       TrustedContact[] @relation("caregiverUser")
   trustedContacts TrustedContact[] @relation("elderlyUser")
-
-  // For caregiver users
-  caringFor TrustedContact[] @relation("caregiverUser")
 }
 
 model Transaction {
   id          String   @id @default(cuid())
   amount      Float
   description String
-  type        String // e.g., 'UPI', 'NEFT', 'Debit Card'
+  type        String
   timestamp   DateTime @default(now())
   isFlagged   Boolean  @default(false)
-
-  userId String
-  user   User    @relation(fields: [userId], references: [id])
-  alerts Alert[]
+  userId      String
+  alerts      Alert[]
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model TrustedContact {
-  id String @id @default(cuid())
-
-  elderlyId   String
-  elderlyUser User   @relation("elderlyUser", fields: [elderlyId], references: [id])
-
+  id            String @id @default(cuid())
+  elderlyId     String
   caregiverId   String
   caregiverUser User   @relation("caregiverUser", fields: [caregiverId], references: [id])
+  elderlyUser   User   @relation("elderlyUser", fields: [elderlyId], references: [id])
 
   @@unique([elderlyId, caregiverId])
 }
 
 model Alert {
-  id        String   @id @default(cuid())
-  message   String
-  isRead    Boolean  @default(false)
-  createdAt DateTime @default(now())
-
+  id            String      @id @default(cuid())
+  message       String
+  isRead        Boolean     @default(false)
+  createdAt     DateTime    @default(now())
   transactionId String
   transaction   Transaction @relation(fields: [transactionId], references: [id])
 }
