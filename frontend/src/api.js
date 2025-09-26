@@ -46,6 +46,14 @@ const api = {
       headers: { Authorization: `Bearer ${token}` },
     });
   },
+
+  createTransaction: async (token, transactionData) => {
+    return http('/api/transactions', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: transactionData,
+    });
+  },
 };
 
 export default api;

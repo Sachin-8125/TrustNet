@@ -4,23 +4,30 @@ import ProfileCard from './ProfileCard';
 import { useEffect, useState } from "react";
 import {LogOutIcon} from './icons'
 import api from '../api.js'
+import CreateTransaction from './CreateTransaction';
+
 export default function Dashboard({user, token, onLogout}){
     const [data, setData] = useState({ transactions: [], associatedUser: null });
     const [isLoading, setIsLoading] = useState(true);
     
-    useEffect(() => {
-        const fetchData = async() => {
-            setIsLoading(true);
-            try {
-                const dashboardData = await api.getDashboard(token);
-                setData(dashboardData);
-            } catch (error) {
-                console.error("Failed to fetch dashboard data:", error);
-            }
-            setIsLoading(false);
+    const fetchData = async() => {
+        setIsLoading(true);
+        try {
+            const dashboardData = await api.getDashboard(token);
+            setData(dashboardData);
+        } catch (error) {
+            console.error("Failed to fetch dashboard data:", error);
         }
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
         fetchData();
     }, [token]);
+
+    const handleTransactionCreated = (newTransaction) => {
+        fetchData();
+    };
 
     const greeting = user.role === 'CAREGIVER'
         ? `Namaste, ${user.name}. You are viewing the account for ${data.associatedUser?.name || '...'}.`
@@ -51,8 +58,9 @@ export default function Dashboard({user, token, onLogout}){
                         {flaggedTransactions.length > 0 && <Alerts alerts={flaggedTransactions.flatMap(t => t.alerts)} />}
                         <TransactionList transactions={data.transactions} />
                     </div>
-                    <div className="lg:col-span-1">
+                    <div className="lg:col-span-1 space-y-8">
                         <ProfileCard user={user.role === 'CAREGIVER' ? data.associatedUser : user} />
+                        <CreateTransaction token={token} onTransactionCreated={handleTransactionCreated} />
                     </div>
                 </main>
             )}
